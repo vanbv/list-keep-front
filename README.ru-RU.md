@@ -1,4 +1,4 @@
-[![Language](https://img.shields.io/badge/Language-Russian-blue.svg)](README.ru-RU.md)
+[![Language](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
 [![List Keep API](https://img.shields.io/badge/List%20Keep-Back-informational.svg)](https://github.com/vanbv/list-keep)
 [![Vue](https://img.shields.io/badge/-Vue-yellowgreen)](https://vuejs.org)
 [![Vuetify](https://img.shields.io/badge/-Vuetify-informational)](https://vuetifyjs.com)
@@ -8,7 +8,11 @@
 [![Keycloak](https://img.shields.io/badge/-Keycloak-blue)](https://www.keycloak.org/)
 
 # List Keep Front
-Frontend for service for lists making.
+Клиентская часть сервиса для создания списков.
 
-## Backend
+## Быстрый старт
+Для запуска сервиса в переменной окружения `VUE_APP_KEYCLOAK_URL` необходимо задать адрес
+[Keycloak](https://www.keycloak.org/). При локальном запуске это можно сделать в файле `.env.local`.
+
+## Серверная часть
 [List Keep](https://github.com/vanbv/list-keep)
