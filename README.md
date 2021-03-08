@@ -10,5 +10,10 @@
 # List Keep Front
 Frontend for service for lists making.
 
+## Getting Started
+To start the service in the environment variable `VUE_APP_KEYCLOAK_URL` you must set the
+[Keycloak](https://www.keycloak.org/) address. When service is local starting, the variable can be added in file
+`.env.local`.
+
 ## Backend
 [List Keep](https://github.com/vanbv/list-keep)
