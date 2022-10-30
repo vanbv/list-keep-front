@@ -22,4 +22,4 @@ npm run serve
 [List Keep](https://github.com/vanbv/list-keep)
 
 ## Helm chart
-[List Keep Helm Chart] (https://github.com/vanbv/list-keep-chart)
+[List Keep Helm Chart](https://github.com/vanbv/list-keep-chart)
