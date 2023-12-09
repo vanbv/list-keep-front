@@ -9,7 +9,6 @@
 import axios from 'axios'
 
 export default {
-  name: 'Home',
   data() {
     return {
       user: {}
@@ -17,9 +16,9 @@ export default {
   },
   mounted() {
     axios.get('/api/user/current')
-        .then(response => {
-          this.user = response.data
-        })
+      .then(response => {
+        this.user = response.data
+      })
   }
 }
 </script>

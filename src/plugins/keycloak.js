@@ -1,20 +1,30 @@
-import Vue from 'vue'
 import Keycloak from 'keycloak-js'
 
 const initOptions = {
-    url: process.env.VUE_APP_KEYCLOAK_URL,
+    url: import.meta.env.VITE_KEYCLOAK_URL,
     realm: 'list-keep',
     clientId: 'list-keep'
 }
 
-const keycloak = Keycloak(initOptions)
+const TOKEN_MIN_VALIDITY_SECONDS = 70
 
-const KeycloakPlugin = {
-    install: Vue => {
-        Vue.$keycloak = keycloak
-    }
+const keycloak = new Keycloak(initOptions)
+
+export async function updateToken () {
+  await keycloak.updateToken(TOKEN_MIN_VALIDITY_SECONDS)
+  return keycloak.token
 }
 
-Vue.use(KeycloakPlugin)
+export function login (onAuthenticatedCallback) {
+  keycloak.init({ onLoad: 'login-required' }).then((auth) => {
+    if (auth) {
+      onAuthenticatedCallback()
 
-export default KeycloakPlugin
+      window.onfocus = () => {
+        updateToken()
+      }
+    } else {
+      window.location.reload()
+    }
+  })
+}

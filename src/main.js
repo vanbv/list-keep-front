@@ -1,26 +1,29 @@
-import Vue from 'vue'
+/**
+ * main.js
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
+
+// Components
 import App from './App.vue'
-import vuetify from './plugins/vuetify'
-import router from '@/router'
-import i18n from '@/plugins/i18n'
-import '@/plugins/keycloak'
-import { updateToken } from '@/plugins/keycloak-util'
 
-Vue.config.productionTip = false
+// Composables
+import { createApp } from 'vue'
 
-Vue.$keycloak.init({ onLoad: 'login-required' }).then((auth) => {
-  if (!auth) {
-    window.location.reload();
-  } else {
-    new Vue({
-      vuetify,
-      router,
-      i18n,
-      render: h => h(App)
-    }).$mount('#app')
+// Plugins
+import { registerPlugins } from '@/plugins'
 
-    window.onfocus = () => {
-      updateToken()
-    }
-  }
+import { login } from '@/plugins/keycloak'
+import { setupInterceptors } from '@/plugins/axios'
+import {setupRouteWatch} from "@/plugins/router"
+
+login(() => {
+  setupInterceptors()
+  setupRouteWatch()
+
+  const app = createApp(App)
+
+  registerPlugins(app)
+
+  app.mount('#app')
 })
