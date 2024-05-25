@@ -8,14 +8,14 @@ const initOptions = {
 
 const TOKEN_MIN_VALIDITY_SECONDS = 70
 
-const keycloak = new Keycloak(initOptions)
+export const keycloak = new Keycloak(initOptions)
 
-export async function updateToken () {
+export async function updateToken() {
   await keycloak.updateToken(TOKEN_MIN_VALIDITY_SECONDS)
   return keycloak.token
 }
 
-export function login (onAuthenticatedCallback) {
+export function login(onAuthenticatedCallback) {
   keycloak.init({ onLoad: 'login-required' }).then((auth) => {
     if (auth) {
       onAuthenticatedCallback()

@@ -16,3 +16,8 @@
     </v-btn>
   </v-alert>
 </template>
+
+<route lang="yaml">
+meta:
+  layout: empty
+</route>

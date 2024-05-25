@@ -4,5 +4,6 @@
   "go.to.main.page": "Перейти на главную",
   "logout": "Выйти",
   "oops.error.has.occurred": "Упс! Произошла ошибка!",
-  "please.try.again.later": "Попробуйте повторить попытку позднее"
+  "please.try.again.later": "Попробуйте повторить попытку позднее",
+  "edit.profile": "Редактировать профиль"
 }
