@@ -5,5 +5,8 @@
   "logout": "Выйти",
   "oops.error.has.occurred": "Упс! Произошла ошибка!",
   "please.try.again.later": "Попробуйте повторить попытку позднее",
-  "edit.profile": "Редактировать профиль"
+  "edit.profile": "Редактировать профиль",
+  "new.list": "Новый список",
+  "list.name": "Название списка",
+  "create": "Создать"
 }

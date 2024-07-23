@@ -1,75 +1,37 @@
 <template>
   <v-app-bar
-    class="px-3"
     flat
     density="compact"
     elevation="2"
   >
+    <v-app-bar-nav-icon variant="text" @click.stop="menu.toggleShow()"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
-
-    <v-menu
-      min-width="200px"
-      rounded
-    >
-      <template v-slot:activator="{ props }">
-        <v-btn
-          icon
-          v-bind="props"
-        >
-          <v-avatar
-            :image="user.avatar"
-            icon="mdi-account-circle"
-            size="32"
-          ></v-avatar>
-        </v-btn>
-      </template>
-      <v-card>
-        <v-card-text>
-          <div class="mx-auto text-center">
-            <v-avatar
-              :image="user.avatar"
-              icon="mdi-account-circle"
-            ></v-avatar>
-            <h3>{{ user.fullName }}</h3>
-            <p class="text-caption mt-1">
-              {{ user.email }}
-            </p>
-            <v-divider class="my-3"></v-divider>
-            <v-btn
-              variant="text"
-              rounded
-              v-on:click="keycloak.accountManagement()"
-            >
-              {{ $t('edit.profile') }}
-            </v-btn>
-            <v-divider class="my-3"></v-divider>
-            <v-btn
-              variant="text"
-              rounded
-              v-on:click="keycloak.logout()"
-            >
-              {{ $t('logout') }}
-            </v-btn>
-          </div>
-        </v-card-text>
-      </v-card>
-    </v-menu>
+    <UserMenu />
   </v-app-bar>
+  <v-navigation-drawer
+    v-model="menu.isShow"
+    :location="$vuetify.display.mobile ? 'left' : undefined"
+  >
+    <ListMenu />
+  </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { keycloak } from '@/plugins/keycloak'
+import UserMenu from './UserMenu.vue'
+import ListMenu from './ListMenu.vue'
+import { ref } from 'vue'
 
-const user = ref({})
+import { useDisplay } from 'vuetify'
 
-onMounted(() => {
-  const token = keycloak.tokenParsed
+const { mobile } = useDisplay()
 
-  user.value = {
-    avatar: token.picture,
-    fullName: token.name,
-    email: token.email
+const menu = ref(
+  {
+    isShow: !mobile.value,
+    toggleShow: function () {
+      this.isShow = !this.isShow
+    }
   }
-})
+)
+
 </script>

@@ -8,7 +8,7 @@
     <br/>
 
     <v-btn
-      href="/"
+      to="/"
       variant="text"
       color="indigo-darken-3"
     >
