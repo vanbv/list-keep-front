@@ -1,16 +1,16 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <v-alert
-      type="error"
-      variant="outlined"
-      :title="$t('oops.error.has.occurred')"
-      :text="$t('please.try.again.later')"
+    :text="$t('please.try.again.later')"
+    :title="$t('oops.error.has.occurred')"
+    type="error"
+    variant="outlined"
   >
-    <br/>
+    <br>
 
     <v-btn
+      color="indigo-darken-3"
       to="/"
       variant="text"
-      color="indigo-darken-3"
     >
       {{ $t('go.to.main.page') }}
     </v-btn>

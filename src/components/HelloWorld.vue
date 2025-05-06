@@ -4,17 +4,17 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 
-import axios from 'axios'
-import { ref, onMounted } from 'vue'
+  import axios from 'axios'
+  import { onMounted, ref } from 'vue'
 
-const user = ref({})
+  const user = ref({})
 
-onMounted(() => {
-  axios.get('/api/user/current')
-    .then(response => {
-      user.value = response.data
-    })
-})
+  onMounted(() => {
+    axios.get('/api/user/current')
+      .then(response => {
+        user.value = response.data
+      })
+  })
 </script>

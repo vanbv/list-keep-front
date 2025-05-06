@@ -3,42 +3,42 @@
     min-width="200px"
     rounded
   >
-    <template v-slot:activator="{ props }">
+    <template #activator="{ props }">
       <v-btn
         icon
         v-bind="props"
       >
         <v-avatar
-          :image="user.avatar"
           icon="mdi-account-circle"
+          :image="user.avatar"
           size="32"
-        ></v-avatar>
+        />
       </v-btn>
     </template>
     <v-card>
       <v-card-text>
         <div class="mx-auto text-center">
           <v-avatar
-            :image="user.avatar"
             icon="mdi-account-circle"
-          ></v-avatar>
+            :image="user.avatar"
+          />
           <h3>{{ user.fullName }}</h3>
           <p class="text-caption mt-1">
             {{ user.email }}
           </p>
-          <v-divider class="my-3"></v-divider>
+          <v-divider class="my-3" />
           <v-btn
-            variant="text"
             rounded
-            v-on:click="keycloak.accountManagement()"
+            variant="text"
+            @click="keycloak.accountManagement()"
           >
             {{ $t('edit.profile') }}
           </v-btn>
-          <v-divider class="my-3"></v-divider>
+          <v-divider class="my-3" />
           <v-btn
-            variant="text"
             rounded
-            v-on:click="keycloak.logout()"
+            variant="text"
+            @click="keycloak.logout()"
           >
             {{ $t('logout') }}
           </v-btn>
@@ -48,19 +48,14 @@
   </v-menu>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
-import { keycloak } from '@/plugins/keycloak'
+<script lang="ts" setup>
+  import { onMounted, ref } from 'vue'
+  import { userService } from '@/services/UserService'
+  import type { User } from '@/models/User';
 
-const user = ref({})
+  const user = ref<User>({})
 
-onMounted(() => {
-  const token = keycloak.tokenParsed
-
-  user.value = {
-    avatar: token.picture,
-    fullName: token.name,
-    email: token.email
-  }
-})
+  onMounted(() => {
+    user.value = userService.getCurrentUser()
+  })
 </script>

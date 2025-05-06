@@ -1,16 +1,16 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <v-alert
-      type="error"
-      variant="outlined"
-      :title="$t('whoops.404')"
-      :text="$t('page.you.looking.for.does.not.exist')"
+    :text="$t('page.you.looking.for.does.not.exist')"
+    :title="$t('whoops.404')"
+    type="error"
+    variant="outlined"
   >
-    <br/>
+    <br>
 
     <v-btn
+      color="indigo-darken-3"
       to="/"
       variant="text"
-      color="indigo-darken-3"
     >
       {{ $t('go.to.main.page') }}
     </v-btn>

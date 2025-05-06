@@ -1,11 +1,11 @@
 <template>
   <v-app-bar
-    flat
     density="compact"
     elevation="2"
+    flat
   >
-    <v-app-bar-nav-icon variant="text" @click.stop="menu.toggleShow()"></v-app-bar-nav-icon>
-    <v-spacer></v-spacer>
+    <v-app-bar-nav-icon variant="text" @click.stop="menu.toggleShow()" />
+    <v-spacer />
     <UserMenu />
   </v-app-bar>
   <v-navigation-drawer
@@ -16,22 +16,25 @@
   </v-navigation-drawer>
 </template>
 
-<script setup>
-import UserMenu from './UserMenu.vue'
-import ListMenu from './ListMenu.vue'
-import { ref } from 'vue'
+<script lang="ts" setup>
+  import UserMenu from './UserMenu.vue'
+  import ListMenu from './ListMenu.vue'
+  import { ref } from 'vue'
+  import { useDisplay } from 'vuetify'
 
-import { useDisplay } from 'vuetify'
+  class Menu {
+    isShow: boolean
 
-const { mobile } = useDisplay()
+    constructor (isShow: boolean) {
+      this.isShow = isShow;
+    }
 
-const menu = ref(
-  {
-    isShow: !mobile.value,
-    toggleShow: function () {
+    public toggleShow () {
       this.isShow = !this.isShow
     }
   }
-)
 
+  const { mobile } = useDisplay()
+
+  const menu = ref(new Menu(!mobile.value))
 </script>

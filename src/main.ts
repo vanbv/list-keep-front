@@ -1,5 +1,5 @@
 /**
- * main.js
+ * main.ts
  *
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
@@ -13,13 +13,13 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 
-import { login } from '@/plugins/keycloak'
-import { setupInterceptors } from '@/plugins/axios'
-import {setupRouteWatch} from '@/plugins/router'
+import { keycloakService } from '@/services/KeycloakService'
+import { axiosService } from '@/services/AxiosService'
+import { routeService } from '@/services/RouteService'
 
-login(() => {
-  setupInterceptors()
-  setupRouteWatch()
+keycloakService.login(() => {
+  axiosService.setupInterceptors()
+  routeService.setupRouteWatch()
 
   const app = createApp(App)
 
