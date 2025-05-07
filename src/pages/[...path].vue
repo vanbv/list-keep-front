@@ -1,7 +1,7 @@
 <template>
   <v-alert
-    :text="$t('page.you.looking.for.does.not.exist')"
-    :title="$t('whoops.404')"
+    :text="t('page.you.looking.for.does.not.exist')"
+    :title="t('whoops.404')"
     type="error"
     variant="outlined"
   >
@@ -12,7 +12,7 @@
       to="/"
       variant="text"
     >
-      {{ $t('go.to.main.page') }}
+      {{ t('go.to.main.page') }}
     </v-btn>
   </v-alert>
 </template>
@@ -21,3 +21,9 @@
 meta:
   layout: empty
 </route>
+
+<script lang="ts" setup>
+  import { useLocale } from 'vuetify'
+
+  const { t } = useLocale()
+</script>

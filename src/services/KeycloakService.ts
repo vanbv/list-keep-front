@@ -35,6 +35,14 @@ class KeycloakService {
   public getToken (): KeycloakTokenParsed | undefined {
     return this.keycloak.tokenParsed;
   }
+
+  public logout (): Promise<void> {
+    return this.keycloak.logout()
+  }
+
+  public accountManagement (): Promise<void> {
+    return this.keycloak.accountManagement()
+  }
 }
 
 export const keycloakService = new KeycloakService();

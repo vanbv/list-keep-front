@@ -1,7 +1,7 @@
 <template>
   <v-alert
-    :text="$t('please.try.again.later')"
-    :title="$t('oops.error.has.occurred')"
+    :text="t('please.try.again.later')"
+    :title="t('oops.error.has.occurred')"
     type="error"
     variant="outlined"
   >
@@ -12,7 +12,7 @@
       to="/"
       variant="text"
     >
-      {{ $t('go.to.main.page') }}
+      {{ t('go.to.main.page') }}
     </v-btn>
   </v-alert>
 </template>
@@ -21,3 +21,9 @@
 meta:
   layout: empty
 </route>
+
+<script lang="ts" setup>
+  import { useLocale } from 'vuetify'
+
+  const { t } = useLocale()
+</script>

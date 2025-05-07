@@ -5,39 +5,43 @@
     rounded
     to="/lists/add"
   >
-    {{ $t('new.list') }}
+    {{ t('new.list') }}
   </v-btn>
   <v-list
-    :items="listMenu.items"
+    :items="listMenu"
   />
 </template>
 
 <script lang="ts" setup>
+  import { useLocale } from 'vuetify'
   import { onMounted, ref } from 'vue'
 
-  const listMenu = ref({})
+  interface ListItem {
+    title: string,
+    value: string
+  }
 
+  const { t } = useLocale()
+  const listMenu = ref<ListItem[]>([])
 
   onMounted(() => {
-    listMenu.value = {
-      items: [
-        {
-          title: 'Foo',
-          value: 'foo',
-        },
-        {
-          title: 'Bar',
-          value: 'bar',
-        },
-        {
-          title: 'Fizz',
-          value: 'fizz',
-        },
-        {
-          title: 'Buzz',
-          value: 'buzz',
-        },
-      ],
-    }
+    listMenu.value = [
+      {
+        title: 'Foo',
+        value: 'foo',
+      },
+      {
+        title: 'Bar',
+        value: 'bar',
+      },
+      {
+        title: 'Fizz',
+        value: 'fizz',
+      },
+      {
+        title: 'Buzz',
+        value: 'buzz',
+      },
+    ]
   })
 </script>

@@ -30,17 +30,17 @@
           <v-btn
             rounded
             variant="text"
-            @click="keycloak.accountManagement()"
+            @click="accountManagement()"
           >
-            {{ $t('edit.profile') }}
+            {{ t('edit.profile') }}
           </v-btn>
           <v-divider class="my-3" />
           <v-btn
             rounded
             variant="text"
-            @click="keycloak.logout()"
+            @click="logout()"
           >
-            {{ $t('logout') }}
+            {{ t('logout') }}
           </v-btn>
         </div>
       </v-card-text>
@@ -49,11 +49,16 @@
 </template>
 
 <script lang="ts" setup>
+  import { useLocale } from 'vuetify'
   import { onMounted, ref } from 'vue'
   import { userService } from '@/services/UserService'
+  import { useKeycloak } from '@/composables/useKeycloak';
   import type { User } from '@/models/User';
 
+  const { t } = useLocale()
+  const { accountManagement, logout } = useKeycloak()
   const user = ref<User>({})
+
 
   onMounted(() => {
     user.value = userService.getCurrentUser()

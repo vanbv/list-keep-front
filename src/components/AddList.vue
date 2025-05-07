@@ -1,13 +1,13 @@
 <template>
   <v-card
     flat
-    :max-width="$vuetify.display.mobile ? undefined : '350'"
+    :max-width="mobile ? undefined : '350'"
   >
     <v-card-text>
       <v-text-field
         v-model="list.name"
         max-length="20"
-        :placeholder="$t('list.name')"
+        :placeholder="t('list.name')"
         :rules="[rules.required()]"
         variant="plain"
       />
@@ -18,7 +18,7 @@
         block
         class="text-none"
         color="primary"
-        :text="$t('create')"
+        :text="t('create')"
         variant="flat"
         @click="createList"
       />
@@ -27,15 +27,17 @@
 </template>
 
 <script lang="ts" setup>
+import {useDisplay, useLocale, type ValidationRule } from 'vuetify'
   import { listService } from '@/services/ListService';
   import { ref } from 'vue';
   import router from '@/router';
   import { useRules } from 'vuetify/labs/rules'
-  import type {ListCreateDto} from "@/models/ListCreateDto.ts";
+  import type { ListCreateDto } from '@/models/ListCreateDto';
 
+  const { t } = useLocale()
+  const { mobile } = useDisplay()
   const list = ref<ListCreateDto>({ name: '' });
-  const rules = useRules()
-
+  const rules = useRules() as { required: () => ValidationRule }
   function createList () {
     listService.create(list.value).then(() => {
       router.push('/');

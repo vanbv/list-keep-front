@@ -10,7 +10,7 @@
   </v-app-bar>
   <v-navigation-drawer
     v-model="menu.isShow"
-    :location="$vuetify.display.mobile ? 'left' : undefined"
+    :location="mobile ? 'left' : undefined"
   >
     <ListMenu />
   </v-navigation-drawer>
