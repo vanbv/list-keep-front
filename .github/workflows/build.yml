@@ -21,7 +21,7 @@ jobs:
       - name: Create .env.production
         run: |
           touch .env.production
-          echo VITE_KEYCLOAK_URL = ${{ secrets.VITE_KEYCLOAK_URL }} >> .env.production
+          echo VITE_KEYCLOAK_URL = ${{ vars.VITE_KEYCLOAK_URL }} >> .env.production
 
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
