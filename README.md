@@ -16,7 +16,7 @@ To start the service in the environment variable `VITE_KEYCLOAK_URL` you must se
 [Keycloak](https://www.keycloak.org/) address. When service is local starting, the variable can be added in file
 `.env.local`. Run command:
 ```
-npm run dev
+yarn run dev
 ```
 
 ## Backend

@@ -16,7 +16,7 @@
 [Keycloak](https://www.keycloak.org/). При локальном запуске это можно сделать в файле `.env.local`. Команда для
 запуска:
 ```
-npm run dev
+yarn run dev
 ```
 ## Серверная часть
 [List Keep](https://github.com/vanbv/list-keep)
