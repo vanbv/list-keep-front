@@ -1,10 +1,10 @@
 FROM node:latest as build-stage
-ENV NODE_OPTIONS=--openssl-legacy-provider
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+COPY yarn.lock ./
+RUN yarn install
 COPY ./ .
-RUN npm run build
+RUN yarn run build
 
 FROM nginxinc/nginx-unprivileged as production-stage
 USER root

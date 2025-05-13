@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import {useDisplay, useLocale, type ValidationRule } from 'vuetify'
+  import { useDisplay, useLocale, type ValidationRule } from 'vuetify'
   import { listService } from '@/services/ListService';
   import { ref } from 'vue';
   import router from '@/router';
