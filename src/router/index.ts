@@ -12,6 +12,7 @@ import type { Router } from 'vue-router'
 
 let router: Router | null = null
 
+// Workaround for https://github.com/keycloak/keycloak/issues/14742
 export function useRouter (): Router {
   if (!router) {
     router = createRouter({
