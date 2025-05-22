@@ -3,7 +3,7 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios'
-import router from '../router/index.js'
+import { useRouter } from '@/router'
 import { keycloakService } from '@/services/KeycloakService.ts'
 
 class AxiosService {
@@ -23,6 +23,7 @@ class AxiosService {
         return response
       },
       (error: AxiosError) => {
+        const router = useRouter()
         void router.push('/error');
         return Promise.reject(error);
       })

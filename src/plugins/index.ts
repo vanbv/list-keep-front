@@ -8,7 +8,7 @@
 import vuetify from './vuetify'
 import i18n from './i18n'
 import pinia from '../stores'
-import router from '../router'
+import { useRouter } from '@/router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import rules from './rules'
@@ -20,7 +20,7 @@ export function registerPlugins (app: App) {
   app
     .use(vuetify)
     .use(i18n)
-    .use(router)
+    .use(useRouter())
     .use(VueAxios, axios)
     .use(pinia)
     .use(rules)
