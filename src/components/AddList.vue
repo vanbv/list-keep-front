@@ -5,7 +5,7 @@
   >
     <v-card-text>
       <v-text-field
-        v-model="list.name"
+        v-model.trim="list.name"
         max-length="20"
         :placeholder="t('list.name')"
         :rules="rules"
