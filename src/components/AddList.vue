@@ -3,26 +3,29 @@
     flat
     :max-width="mobile ? undefined : '350'"
   >
-    <v-card-text>
-      <v-text-field
-        v-model.trim="list.name"
-        max-length="20"
-        :placeholder="t('list.name')"
-        :rules="rules"
-        variant="plain"
-      />
-    </v-card-text>
+    <v-form v-model="isFormValid" @submit.prevent="createList">
+      <v-card-text>
+        <v-text-field
+          v-model.trim="list.name"
+          maxlength="20"
+          :placeholder="t('list.name')"
+          :rules="rules"
+          variant="plain"
+        />
+      </v-card-text>
 
-    <v-card-actions>
-      <v-btn
-        block
-        class="text-none"
-        color="primary"
-        :text="t('create')"
-        variant="flat"
-        @click="createList"
-      />
-    </v-card-actions>
+      <v-card-actions>
+        <v-btn
+          block
+          class="text-none"
+          color="primary"
+          :disabled="!isFormValid"
+          :text="t('create')"
+          type="submit"
+          variant="flat"
+        />
+      </v-card-actions>
+    </v-form>
   </v-card>
 </template>
 
@@ -39,10 +42,13 @@
   const router = useRouter()
   const list = ref<ListCreateDto>({ name: '' })
   const rules = useRules(() => ['required'])
+  const isFormValid = ref(false)
 
   function createList () {
-    listService.create(list.value).then(() => {
-      router.push('/')
-    })
+    if (isFormValid.value) {
+      listService.create(list.value).then(() => {
+        router.push('/')
+      })
+    }
   }
 </script>
