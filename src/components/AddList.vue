@@ -36,6 +36,8 @@
   import { useRouter } from '@/router'
   import { useRules } from 'vuetify/labs/rules'
   import type { ListCreateDto } from '@/models/ListCreateDto'
+  import { useSnackbarStore } from '@/stores/snackbar'
+  const snackbar = useSnackbarStore()
 
   const { t } = useLocale()
   const { mobile } = useDisplay()
@@ -47,6 +49,7 @@
   function createList () {
     if (isFormValid.value) {
       listService.create(list.value).then(() => {
+        snackbar.showMessage(t('list.created'))
         router.push('/')
       })
     }
