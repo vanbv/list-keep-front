@@ -8,40 +8,32 @@
     {{ t('new.list') }}
   </v-btn>
   <v-list
+    item-title="name"
+    item-value="name"
     :items="listMenu"
   />
 </template>
 
 <script lang="ts" setup>
   import { useLocale } from 'vuetify'
-  import { onMounted, ref } from 'vue'
-
-  interface ListItem {
-    title: string,
-    value: string
-  }
+  import { onMounted, ref, watch } from 'vue'
+  import { listService } from '@/services/ListService'
+  import type { ListDto } from '@/models/ListDto.ts'
+  import { useRoute } from 'vue-router'
 
   const { t } = useLocale()
-  const listMenu = ref<ListItem[]>([])
+  const listMenu = ref<ListDto[]>([])
+  const route = useRoute()
+
+  const loadLists = async () => {
+    listService.getAll().then(lists => {
+      listMenu.value = lists
+    })
+  }
 
   onMounted(() => {
-    listMenu.value = [
-      {
-        title: 'Foo',
-        value: 'foo',
-      },
-      {
-        title: 'Bar',
-        value: 'bar',
-      },
-      {
-        title: 'Fizz',
-        value: 'fizz',
-      },
-      {
-        title: 'Buzz',
-        value: 'buzz',
-      },
-    ]
+    loadLists()
   })
+
+  watch(route, () => loadLists())
 </script>
