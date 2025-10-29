@@ -15,11 +15,9 @@ import { createApp } from 'vue'
 
 import { keycloakService } from '@/services/KeycloakService'
 import { axiosService } from '@/services/AxiosService'
-import { routeService } from '@/services/RouteService'
 
 keycloakService.login(() => {
   axiosService.setupInterceptors()
-  routeService.setupRouteWatch()
 
   const app = createApp(App)
 
