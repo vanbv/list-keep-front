@@ -1,4 +1,4 @@
-export interface ListDto {
+export interface ItemDto {
   id: string
   name: string
 }

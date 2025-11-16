@@ -11,6 +11,11 @@ class ListService {
     const response = await axios.get<ListDto[]>('/api/v1/lists');
     return response.data;
   }
+
+  public async get (id: string): Promise<ListDto> {
+    const response = await axios.get<ListDto>(`/api/v1/lists/${id}`);
+    return response.data;
+  }
 }
 
-export const listService = new ListService();
+export const listService = new ListService()

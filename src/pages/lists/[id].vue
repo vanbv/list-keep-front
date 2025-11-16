@@ -1,0 +1,3 @@
+<template>
+  <EditList />
+</template>
