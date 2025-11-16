@@ -34,7 +34,7 @@
   const route = useRoute()
 
   const loadListWithItems = async () => {
-    const listId = route.params.id
+    const listId = getListId()
 
     listService.get(listId).then(data => {
       list.value = data
@@ -43,7 +43,14 @@
     itemService.getAll(listId).then(data => {
       items.value = data
     })
+  }
 
+  const getListId = (): string => {
+    if (route.name == '/lists/[id]') {
+      return route.params.id
+    } else {
+      throw new Error(`Incorrect route - ${route.name}`)
+    }
   }
 
   onMounted(() => loadListWithItems())
