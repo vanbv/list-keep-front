@@ -1,4 +1,7 @@
 import Keycloak, { type KeycloakTokenParsed } from 'keycloak-js';
+import { useErrorHandler } from '@/composables/useErrorHandler'
+
+const { handleError } = useErrorHandler()
 
 class KeycloakService {
   private static readonly TOKEN_MIN_VALIDITY_SECONDS = 70;
@@ -15,21 +18,21 @@ class KeycloakService {
 
   public async updateToken (): Promise<string> {
     await this.keycloak.updateToken(KeycloakService.TOKEN_MIN_VALIDITY_SECONDS);
-    return this.keycloak.token!;
+    return this.keycloak.token!
   }
 
   public login (onAuthenticatedCallback: () => void): void {
     this.keycloak.init({ onLoad: 'login-required' }).then(auth => {
       if (auth) {
-        onAuthenticatedCallback();
+        onAuthenticatedCallback()
 
         window.onfocus = () => {
-          void this.updateToken();
+          void this.updateToken()
         };
       } else {
-        window.location.reload();
+        window.location.reload()
       }
-    });
+    }).catch(reason => handleError(reason))
   }
 
   public getToken (): KeycloakTokenParsed | undefined {
@@ -45,4 +48,4 @@ class KeycloakService {
   }
 }
 
-export const keycloakService = new KeycloakService();
+export const keycloakService = new KeycloakService()

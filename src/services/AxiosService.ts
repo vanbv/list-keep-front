@@ -3,8 +3,11 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios'
-import { useRouter } from '@/router'
+
 import { keycloakService } from '@/services/KeycloakService.ts'
+import { useErrorHandler } from '@/composables/useErrorHandler'
+
+const { handleError } = useErrorHandler()
 
 class AxiosService {
   private static readonly AUTHORIZATION_HEADER = 'Authorization'
@@ -23,8 +26,7 @@ class AxiosService {
         return response
       },
       (error: AxiosError) => {
-        const router = useRouter()
-        void router.push('/error');
+        handleError(error)
         return Promise.reject(error);
       })
   }
