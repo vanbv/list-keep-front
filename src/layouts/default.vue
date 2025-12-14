@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-if="keycloak.authenticated">
     <DefaultBar />
 
     <DefaultView />
@@ -12,4 +12,7 @@
   import DefaultBar from './default/AppBar.vue'
   import DefaultView from './default/View.vue'
   import DefaultSnackbar from './default/Snackbar.vue'
+  import { useKeycloak } from '@dsb-norge/vue-keycloak-js'
+
+  const keycloak = useKeycloak()
 </script>

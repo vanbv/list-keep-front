@@ -30,7 +30,7 @@
           <v-btn
             rounded
             variant="text"
-            @click="accountManagement()"
+            @click="keycloak.accountManagement?.()"
           >
             {{ t('edit.profile') }}
           </v-btn>
@@ -38,7 +38,7 @@
           <v-btn
             rounded
             variant="text"
-            @click="logout()"
+            @click="keycloak.logoutFn?.()"
           >
             {{ t('logout') }}
           </v-btn>
@@ -52,13 +52,12 @@
   import { useLocale } from 'vuetify'
   import { onMounted, ref } from 'vue'
   import { userService } from '@/services/UserService'
-  import { useKeycloak } from '@/composables/useKeycloak';
-  import type { User } from '@/models/User';
+  import { useKeycloak } from '@dsb-norge/vue-keycloak-js'
+  import type { User } from '@/models/User'
 
   const { t } = useLocale()
-  const { accountManagement, logout } = useKeycloak()
+  const keycloak = useKeycloak()
   const user = ref<User>({})
-
 
   onMounted(() => {
     user.value = userService.getCurrentUser()

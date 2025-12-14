@@ -8,13 +8,13 @@ class ListService {
   }
 
   public async getAll (): Promise<ListDto[]> {
-    const response = await axios.get<ListDto[]>('/api/v1/lists');
-    return response.data;
+    const response = await axios.get<ListDto[]>('/api/v1/lists')
+    return response.data
   }
 
   public async get (id: string): Promise<ListDto> {
-    const response = await axios.get<ListDto>(`/api/v1/lists/${id}`);
-    return response.data;
+    const response = await axios.get<ListDto>(`/api/v1/lists/${id}`)
+    return response.data
   }
 }
 

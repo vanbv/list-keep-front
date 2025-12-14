@@ -26,7 +26,7 @@
     isShow: boolean
 
     constructor (isShow: boolean) {
-      this.isShow = isShow;
+      this.isShow = isShow
     }
 
     public toggleShow () {

@@ -23,11 +23,11 @@
 </template>
 <script lang="ts" setup>
   import { onMounted, ref, watch } from 'vue'
-  import type { ListDto } from '@/models/ListDto.ts'
+  import type { ListDto } from '@/models/ListDto'
   import { listService } from '@/services/ListService'
-  import { itemService } from '@/services/ItemService.ts'
+  import { itemService } from '@/services/ItemService'
   import { useRoute } from 'vue-router'
-  import type { ItemDto } from '@/models/ItemDto.ts'
+  import type { ItemDto } from '@/models/ItemDto'
 
   const list = ref<ListDto>({ id: '', name: '' })
   const items = ref<ItemDto[]>([])

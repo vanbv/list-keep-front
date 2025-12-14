@@ -1,15 +1,16 @@
-import type { User } from '@/models/User';
-import { keycloakService } from '@/services/KeycloakService'
+import type { User } from '@/models/User'
+import { useKeycloak } from '@dsb-norge/vue-keycloak-js'
 
 class UserService {
   public getCurrentUser (): User {
-    const token = keycloakService.getToken()
+    const keycloak = useKeycloak()
+
     return {
-      avatar: token?.picture,
-      fullName: token?.name,
-      email: token?.email,
+      avatar: keycloak.tokenParsed?.picture,
+      fullName: keycloak.tokenParsed?.name,
+      email: keycloak.tokenParsed?.email,
     }
   }
 }
 
-export const userService = new UserService();
+export const userService = new UserService()

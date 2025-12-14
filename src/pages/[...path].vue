@@ -9,7 +9,7 @@
 
     <v-btn
       color="indigo-darken-3"
-      to="/"
+      href="/"
       variant="text"
     >
       {{ t('go.to.main.page') }}

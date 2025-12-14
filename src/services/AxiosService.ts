@@ -4,7 +4,8 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from 'axios'
 
-import { keycloakService } from '@/services/KeycloakService.ts'
+import { useKeycloak } from '@dsb-norge/vue-keycloak-js'
+
 import { useErrorHandler } from '@/composables/useErrorHandler'
 
 const { handleError } = useErrorHandler()
@@ -15,11 +16,15 @@ class AxiosService {
   public setupInterceptors (): void {
     axios.interceptors.request.use(
       async (config: InternalAxiosRequestConfig) => {
-        const token = await keycloakService.updateToken()
-        config.headers[AxiosService.AUTHORIZATION_HEADER] = `Bearer ${token}`
+        const keycloak = useKeycloak()
+
+        if (keycloak.authenticated) {
+          config.headers[AxiosService.AUTHORIZATION_HEADER] = `Bearer ${keycloak.token}`
+        }
+
         return config
       }
-    );
+    )
 
     axios.interceptors.response.use(
       (response: AxiosResponse) => {
@@ -27,9 +32,9 @@ class AxiosService {
       },
       (error: AxiosError) => {
         handleError(error)
-        return Promise.reject(error);
+        return Promise.reject(error)
       })
   }
 }
 
-export const axiosService = new AxiosService();
+export const axiosService = new AxiosService()

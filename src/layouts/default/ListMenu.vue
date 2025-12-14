@@ -22,7 +22,7 @@
   import { useLocale } from 'vuetify'
   import { onMounted, ref, watch } from 'vue'
   import { listService } from '@/services/ListService'
-  import type { ListDto } from '@/models/ListDto.ts'
+  import type { ListDto } from '@/models/ListDto'
   import { useRoute } from 'vue-router'
 
   const { t } = useLocale()

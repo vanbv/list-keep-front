@@ -32,7 +32,7 @@
 <script lang="ts" setup>
   import { useDisplay, useLocale } from 'vuetify'
   import { listService } from '@/services/ListService'
-  import { ref } from 'vue';
+  import { ref } from 'vue'
   import { useRouter } from '@/router'
   import { useRules } from 'vuetify/labs/rules'
   import type { ListCreateDto } from '@/models/ListCreateDto'

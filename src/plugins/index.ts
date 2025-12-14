@@ -12,6 +12,8 @@ import { useRouter } from '@/router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import rules from './rules'
+import VueKeyCloak from '@dsb-norge/vue-keycloak-js'
+import keycloakOptions from '@/plugins/keycloak'
 
 // Types
 import type { App } from 'vue'
@@ -24,4 +26,5 @@ export function registerPlugins (app: App) {
     .use(VueAxios, axios)
     .use(pinia)
     .use(rules)
+    .use(VueKeyCloak, keycloakOptions)
 }
