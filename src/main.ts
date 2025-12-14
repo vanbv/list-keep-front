@@ -20,3 +20,4 @@ const { handleError } = useErrorHandler()
 const app = createApp(App)
 app.config.errorHandler = handleError
 registerPlugins(app)
+app.mount('#app')
