@@ -17,11 +17,7 @@ class AxiosService {
     axios.interceptors.request.use(
       async (config: InternalAxiosRequestConfig) => {
         const keycloak = useKeycloak()
-
-        if (keycloak.authenticated) {
-          config.headers[AxiosService.AUTHORIZATION_HEADER] = `Bearer ${keycloak.token}`
-        }
-
+        config.headers[AxiosService.AUTHORIZATION_HEADER] = `Bearer ${keycloak.token}`
         return config
       }
     )
