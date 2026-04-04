@@ -19,7 +19,7 @@
 
 <route lang="yaml">
 meta:
-  layout: empty
+  layout: authorized_empty
 </route>
 
 <script lang="ts" setup>
