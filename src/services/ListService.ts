@@ -3,8 +3,9 @@ import type { ListDto } from '@/models/ListDto'
 import axios from 'axios'
 
 class ListService {
-  public async create (list: ListCreateDto): Promise<void> {
-    await axios.post('/api/v1/lists', list)
+  public async create (list: ListCreateDto): Promise<ListDto> {
+    const response = await axios.post<ListDto>('/api/v1/lists', list)
+    return response.data
   }
 
   public async getAll (): Promise<ListDto[]> {

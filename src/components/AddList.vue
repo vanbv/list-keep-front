@@ -48,9 +48,9 @@
 
   function createList () {
     if (isFormValid.value) {
-      listService.create(list.value).then(() => {
+      listService.create(list.value).then(data => {
         snackbar.showMessage(t('list.created'))
-        router.push('/')
+        router.push(`/lists/${data.id}`)
       })
     }
   }
