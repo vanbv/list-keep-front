@@ -13,7 +13,7 @@
       :key="listItem.id"
       :title="listItem.name"
       :to="`/lists/${listItem.id}`"
-      :value="listItem.name"
+      :value="listItem.id"
     />
   </v-list>
 </template>
