@@ -2,22 +2,23 @@
   <v-card class="mx-auto" max-width="400">
     <v-list
       v-model:selected="settingsSelection"
-      lines="three"
+      class="py-0"
       select-strategy="leaf"
     >
       <v-list-subheader>{{ list.name }}</v-list-subheader>
-      <v-list-item
-        v-for="item in items"
-        :key="item.id"
-        :title="item.name"
-        :value="item.name"
-      >
-        <template #prepend="{ isSelected, select }">
-          <v-list-item-action start>
-            <v-checkbox-btn :model-value="isSelected" @update:model-value="select" />
-          </v-list-item-action>
-        </template>
-      </v-list-item>
+      <template v-for="item in items" :key="item.id">
+        <v-divider />
+        <v-list-item
+          :title="item.name"
+          :value="item.id"
+        >
+          <template #prepend="{ isSelected, select }">
+            <v-list-item-action start>
+              <v-checkbox-btn :model-value="isSelected" @update:model-value="select" />
+            </v-list-item-action>
+          </template>
+        </v-list-item>
+      </template>
     </v-list>
   </v-card>
 </template>
