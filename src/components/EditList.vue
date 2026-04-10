@@ -1,7 +1,7 @@
 <template>
   <v-card
-    class="mx-auto ml-md-2 mt-2"
-    :class="mobile ? 'mx-auto' : undefined"
+    class="mt-2"
+    :class="mobile ? 'mx-auto' : 'ml-md-2'"
     :max-width="400"
   >
     <v-list
