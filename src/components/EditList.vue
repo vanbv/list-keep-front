@@ -1,5 +1,9 @@
 <template>
-  <v-card class="mx-auto" max-width="400">
+  <v-card
+    class="mx-auto ml-md-2 mt-2"
+    :class="mobile ? 'mx-auto' : undefined"
+    :max-width="400"
+  >
     <v-list
       v-model:selected="settingsSelection"
       class="py-0"
@@ -24,11 +28,14 @@
 </template>
 <script lang="ts" setup>
   import { onMounted, ref, watch } from 'vue'
+  import { useDisplay } from 'vuetify'
   import type { ListDto } from '@/models/ListDto'
   import { listService } from '@/services/ListService'
   import { itemService } from '@/services/ItemService'
   import { useRoute } from 'vue-router'
   import type { ItemDto } from '@/models/ItemDto'
+
+  const { mobile } = useDisplay()
 
   const list = ref<ListDto>({ id: '', name: '' })
   const items = ref<ItemDto[]>([])
