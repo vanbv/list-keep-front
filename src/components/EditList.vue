@@ -35,6 +35,7 @@
     </v-list>
   </v-card>
 </template>
+
 <script lang="ts" setup>
   import { onMounted, ref, watch } from 'vue'
   import { useDisplay, useLocale } from 'vuetify'
@@ -52,6 +53,8 @@
   const items = ref<ItemDto[]>([])
   const route = useRoute()
 
+  const listId = ref('')
+
   const getListId = (): string => {
     if (route.name == '/lists/[id]') {
       return route.params.id
@@ -60,20 +63,19 @@
     }
   }
 
-  const listId = getListId()
-
   const loadListWithItems = async () => {
-    listService.get(listId).then(data => {
+    listId.value = getListId()
+    listService.get(listId.value).then(data => {
       list.value = { name: data.name }
     })
 
-    itemService.getAll(listId).then(data => {
+    itemService.getAll(listId.value).then(data => {
       items.value = data
     })
   }
 
   function updateList () {
-    listService.update(listId, list.value)
+    listService.update(listId.value, list.value)
   }
 
   onMounted(() => loadListWithItems())
