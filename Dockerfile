@@ -1,6 +1,6 @@
 FROM node:latest as build-stage
 WORKDIR /app
-RUN corepack enable && corepack prepare yarn@stable --activate
+RUN npm install -g yarn
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn install
