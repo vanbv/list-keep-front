@@ -22,13 +22,23 @@
       <template v-for="item in items" :key="item.id">
         <v-divider />
         <v-list-item
-          :title="item.name"
+          :ripple="false"
           :value="item.id"
         >
           <template #prepend="{ isSelected, select }">
             <v-list-item-action start>
               <v-checkbox-btn :model-value="isSelected" @update:model-value="select" />
             </v-list-item-action>
+          </template>
+          <template #title>
+            <debounce-text-field
+              v-model="item.name"
+              hide-details
+              maxlength="20"
+              :on-change="() => updateItem(item)"
+              :placeholder="t('item')"
+              variant="plain"
+            />
           </template>
         </v-list-item>
       </template>
@@ -78,6 +88,10 @@
     listService.update(listId.value, list.value)
   }
 
+  function updateItem (item: ItemDto) {
+    itemService.update(listId.value, item.id, item)
+  }
+
   onMounted(() => loadListWithItems())
   watch(route, () => loadListWithItems())
   const settingsSelection = ref([])
@@ -86,5 +100,10 @@
 <style>
   .v-list-subheader__text {
     width: 100%;
+  }
+
+  .v-list-item-title .v-field__input {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 </style>

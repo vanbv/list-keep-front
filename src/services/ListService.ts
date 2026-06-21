@@ -9,9 +9,8 @@ class ListService {
     return response.data
   }
 
-  public async update (id: string, list: ListUpdateDto): Promise<ListDto> {
-    const response = await axios.put<ListDto>(`/api/v1/lists/${id}`, list)
-    return response.data
+  public async update (id: string, list: ListUpdateDto): Promise<void> {
+    await axios.put(`/api/v1/lists/${id}`, list)
   }
 
   public async getAll (): Promise<ListDto[]> {
